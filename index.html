@@ -28,7 +28,24 @@
       background: var(--bg);
       color: var(--text);
     }
-    a { text-decoration: none; color: inherit; }
+
+    /* Loader */
+    #loader {
+      position: fixed;
+      inset: 0;
+      background: var(--accent);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5rem;
+      font-family: 'Playfair Display', serif;
+      z-index: 9999;
+      animation: fadeOut 1s ease-out 4s forwards;
+    }
+    @keyframes fadeOut {
+      to { opacity: 0; visibility: hidden; }
+    }
 
     header {
       position: fixed;
@@ -37,9 +54,7 @@
       border-bottom: 1px solid #ddd;
       z-index: 1000;
     }
-    .container {
-      width: 90%; max-width: 1200px; margin: auto;
-    }
+    .container { width: 90%; max-width: 1200px; margin: auto; }
     nav {
       display: flex;
       align-items: center;
@@ -59,12 +74,10 @@
       transition: color .2s;
     }
     .nav-links a:hover { color: var(--accent); }
-
     .hamburger {
       display: none;
       flex-direction: column;
-      gap: 4px;
-      cursor: pointer;
+      gap: 4px; cursor: pointer;
     }
     .hamburger div {
       width: 24px; height: 3px;
@@ -94,7 +107,6 @@
       .hamburger { display: flex; }
     }
 
-    /* Hero */
     .hero {
       margin-top: 64px;
       background: var(--light);
@@ -122,124 +134,62 @@
       background: var(--accent);
       margin: .5rem auto 2rem;
     }
-
-    .two-col, .gallery, .give-contact {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
-      gap: 2rem;
-    }
-
-    .gallery img {
-      width: 100%;
-      height: 150px;
-      object-fit: cover;
-      border-radius: 6px;
-      box-shadow: 0 6px 14px rgba(0,0,0,0.1);
-    }
-
-    .give-contact {
-      background: var(--accent);
-      color: #fff;
-      border-radius: 8px;
-      padding: 2rem;
-    }
-    .give-contact h3 {
-      color: var(--button);
-      margin-bottom: .5rem;
-    }
-    .give-contact a.button {
-      background: var(--button);
-      color: #fff;
-      padding: .75rem 1.5rem;
-      border-radius: 4px;
-      font-weight: 600;
-      display: inline-block;
-      text-align: center;
-      margin-top: 1rem;
-    }
-    footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      font-size: 0.9rem;
-      color: var(--text);
-      opacity: 0.7;
-    }
-
-    @media (max-width: 600px) {
-      .nav-links { gap: 1rem; }
-      .give-contact { grid-template-columns: 1fr; }
-    }
   </style>
 </head>
 <body>
 
-  <header>
-    <div class="container">
-      <nav>
-        <div class="logo">Peniel Place</div>
-        <div style="display:flex;align-items:center;gap:1rem;">
-          <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
-          <div class="hamburger" onclick="toggleMenu()">
-            <div></div><div></div><div></div>
-          </div>
-        </div>
-        <div class="nav-links" id="navLinks">
-          <a href="#about">About</a>
-          <a href="#vision">Vision</a>
-          <a href="#mission">Mission</a>
-          <a href="#gallery">Gallery</a>
-          <a href="#service">Service</a>
-          <a href="#contact">Contact</a>
-        </div>
-      </nav>
-    </div>
-  </header>
+<!-- Loader -->
+<div id="loader">Welcome to Peniel Place Ministries – A Ministry Without Borders</div>
 
-  <section class="hero" id="home">
-    <img src="images/logo.png" alt="Peniel Place Logo">
-  </section>
-
-  <section id="about">
-    <div class="container">
-      <h2 class="section-title">About Us</h2>
-      <div class="underline"></div>
-      <p style="max-width:700px;margin:auto;">
-        Peniel Place Ministries exists to bring healing, hope and transformation through worship, community outreach, and the Word of God.
-      </p>
-    </div>
-  </section>
-
-  <section id="vision">
-    <div class="container">
-      <h2 class="section-title">Our Vision & Mission</h2>
-      <div class="underline"></div>
-      <div class="two-col">
-        <div>
-          <h3>Vision</h3>
-          <p>To be a sanctuary where broken hearts are mended and lives are transformed by the power of faith and fellowship.</p>
-        </div>
-        <div>
-          <h3>Mission</h3>
-          <p>To reach across all boundaries and uplift communities through worship, outreach, and the Word of God—sharing light wherever there is darkness.</p>
+<header>
+  <div class="container">
+    <nav>
+      <div class="logo">Peniel Place</div>
+      <div style="display:flex;align-items:center;gap:1rem;">
+        <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+        <div class="hamburger" onclick="toggleMenu()">
+          <div></div><div></div><div></div>
         </div>
       </div>
-    </div>
-  </section>
+      <div class="nav-links" id="navLinks">
+        <a href="#about">About</a>
+        <a href="#vision">Vision</a>
+        <a href="#mission">Mission</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#service">Service</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </div>
+</header>
 
-  <section id="gallery">
-    <div class="container">
-      <h2 class="section-title">Gallery</h2>
-      <div class="underline"></div>
-      <div class="gallery">
-        <img src="images/service.png" alt="Service">
-        <img src="images/pastor.png" alt="Community Outreach">
-        <img src="images/giving.jpg" alt="Sunday Gathering">
+<section class="hero" id="home">
+  <img src="images/logo.png" alt="Peniel Place Logo">
+</section>
+
+<section id="about">
+  <div class="container">
+    <h2 class="section-title">About Us</h2>
+    <div class="underline"></div>
+    <p style="max-width:700px;margin:auto;">
+      Peniel Place Ministries exists to bring healing, hope and transformation through worship, community outreach, and the Word of God.
+    </p>
+  </div>
+</section>
+
+<section id="vision">
+  <div class="container">
+    <h2 class="section-title">Our Vision & Mission</h2>
+    <div class="underline"></div>
+    <div class="two-col">
+      <div>
+        <h3>Vision</h3>
+        <p>To be a sanctuary where broken hearts are mended and lives are transformed by the power of faith and fellowship.</p>
+      </div>
+      <div>
+        <h3>Mission</h3>
+        <p>To reach across all boundaries and uplift communities through worship, outreach, and the Word of God—sharing light wherever there is darkness.</p>
       </div>
     </div>
-  </section>
-
-  <section id="service">
-    <div class="container">
-      <h2 class="section-title">Service</h2>
-      <div class="underline"></div>
-      <
+  </div>
+</section>
