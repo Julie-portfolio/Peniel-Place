@@ -9,18 +9,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
 
   <style>
-    /* — Reset & Base — */
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
       font-family: 'Inter', sans-serif;
       color: #333;
       background: #fdfdfd;
-      overflow: hidden; /* hide scroll until loader is gone */
+      overflow: hidden;
     }
     a { text-decoration: none; color: inherit; }
 
-    /* — Loader Overlay — */
+    /* Loader */
     #loader {
       position: fixed;
       inset: 0;
@@ -29,7 +28,6 @@
       justify-content: center;
       align-items: center;
       z-index: 10000;
-      transform: translateY(0);
       animation: slideUp 1s ease-out 4s forwards;
     }
     #loader h1 {
@@ -38,11 +36,9 @@
       font-size: 2.5rem;
       text-align: center;
     }
-    @keyframes slideUp {
-      to { transform: translateY(-100%); }
-    }
+    @keyframes slideUp { to { transform: translateY(-100%); } }
 
-    /* — Header & Nav — */
+    /* Header */
     header {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -60,75 +56,93 @@
       height: 64px;
     }
     .logo {
-      display: flex;
-      align-items: center;
+      display: flex; align-items: center;
       font-family: 'Playfair Display', serif;
       color: #1e3a8a;
       font-weight: 700;
       font-size: 1.5rem;
     }
-    .logo img.nav-logo-img {
-      height: 40px; margin-right: 0.5rem;
+    .logo img {
+      height: 40px;
+      margin-right: 0.5rem;
     }
     .nav-links {
       display: flex; gap: 1.5rem;
     }
     .nav-links a {
-      font-weight: 600; color: #333;
+      font-weight: 600;
+      color: #333;
       transition: color .2s;
     }
     .nav-links a:hover { color: #1e3a8a; }
 
-    /* — Mobile Menu — */
     .hamburger {
-      display: none; flex-direction: column; gap: 4px; cursor: pointer;
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      cursor: pointer;
     }
     .hamburger div {
       width: 24px; height: 3px; background: #333;
     }
     @media(max-width: 768px) {
       .nav-links {
-        position: absolute; top: 64px; right: 0;
-        background: #fff; flex-direction: column;
-        width: 200px; border-left: 1px solid #eee;
-        transform: translateX(100%); transition: transform .3s ease;
+        position: absolute;
+        top: 64px; right: 0;
+        background: #fff;
+        flex-direction: column;
+        width: 200px;
+        border-left: 1px solid #eee;
+        transform: translateX(100%);
+        transition: transform .3s ease;
       }
       .nav-links.show { transform: translateX(0); }
       .hamburger { display: flex; }
     }
 
-    /* — Hero — */
+    /* Hero */
     .hero {
-      margin-top: 64px; /* below header */
+      margin-top: 64px;
       height: 80vh;
-      background: url('logo.pnp') center/cover no-repeat;
-      display: flex; align-items: center; justify-content: center;
-      color: #fff; position: relative;
+      background: url('images/logo.png') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      color: #fff;
     }
     .hero::after {
       content: ''; position: absolute; inset: 0;
       background: rgba(0,0,0,0.5);
     }
-    .hero-content { position: relative; z-index: 1; }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
     .hero h1 {
       font-family: 'Playfair Display', serif;
-      font-size: 3rem; margin-bottom: .5rem;
+      font-size: 3rem;
+      margin-bottom: .5rem;
     }
-    .hero p { font-size: 1.2rem; color: #5b8bf7; }
+    .hero h2 { font-size: 1.5rem; margin-bottom: 1rem; }
 
-    /* — Sections — */
+    /* Sections */
     section { padding: 4rem 0; }
     section:nth-child(even) { background: #fafafa; }
     .section-title {
-      text-align: center; font-size: 2rem;
-      margin-bottom: 1rem; color: #1e3a8a; font-weight: 600;
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #1e3a8a;
+      font-weight: 600;
     }
     .underline {
-      width: 80px; height: 3px; background: #1e3a8a;
+      width: 80px; height: 3px;
+      background: #1e3a8a;
       margin: .5rem auto 2rem;
     }
 
-    /* — Two Columns — */
     .two-col {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
@@ -136,12 +150,13 @@
     }
     .two-col p { max-width: 500px; margin: auto; }
 
-    /* — Pastor & Service — */
     .pastor {
-      display: flex; flex-wrap: wrap; gap: 2rem; align-items: center;
+      display: flex; flex-wrap: wrap;
+      gap: 2rem; align-items: center;
     }
     .pastor img {
-      width: 250px; border-radius: 8px;
+      width: 250px;
+      border-radius: 8px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
     .pastor-details h3 {
@@ -150,35 +165,44 @@
       margin-bottom: .5rem;
     }
 
-    /* — Gallery — */
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
       gap: 1rem;
     }
     .gallery img {
-      width: 100%; border-radius: 6px;
-      object-fit: cover; height: 150px;
+      width: 100%;
+      border-radius: 6px;
+      object-fit: cover;
+      height: 150px;
     }
 
-    /* — Give/Contact — */
     .give-contact {
-      background: #1e3a8a; color: #fff;
-      border-radius: 8px; padding: 2rem;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+      background: #1e3a8a;
+      color: #fff;
+      border-radius: 8px;
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
     }
-    .give-contact div h3 {
-      color: #ff4a4a; margin-bottom: .5rem;
+    .give-contact h3 {
+      color: #ff4a4a;
+      margin-bottom: .5rem;
     }
-    .give-contact div p { margin-bottom: 1rem; }
+    .give-contact p { margin-bottom: 1rem; }
     .give-contact a.button {
-      display: inline-block; background: #ff4a4a;
-      color: #fff; padding: .75rem 1.5rem;
-      border-radius: 4px; font-weight: 600;
+      display: inline-block;
+      background: #ff4a4a;
+      color: #fff;
+      padding: .75rem 1.5rem;
+      border-radius: 4px;
+      font-weight: 600;
       transition: background .2s;
     }
-    .give-contact a.button:hover { background: #e03a3a; }
-
+    .give-contact a.button:hover {
+      background: #e03a3a;
+    }
     @media(max-width: 600px) {
       .give-contact { grid-template-columns: 1fr; }
     }
@@ -186,17 +210,17 @@
 </head>
 <body>
 
-  <!-- Loader Overlay -->
+  <!-- Loader -->
   <div id="loader">
     <h1>Welcome to Peniel Place Ministries</h1>
   </div>
 
-  <!-- Header / Nav -->
+  <!-- Header -->
   <header>
     <div class="container">
       <nav>
         <div class="logo">
-         <img src="images/logo.png" alt="Logo">
+          <img src="images/logo.png" alt="Logo">
           <span>Peniel Place</span>
         </div>
         <div class="hamburger" onclick="toggleMenu()">
@@ -218,12 +242,9 @@
   <!-- Hero -->
   <section class="hero" id="home">
     <div class="hero-content">
-      <h1>Welcome to Peniel-Place-Ministries</h1>
-      <h2>Ministry Without boarder </h2>
-      <img src="images/logo.png" alt="Logo">
-
-
-      
+      <h1>Welcome to Peniel Place Ministries</h1>
+      <h2>Ministry Without Borders</h2>
+      <img src="images/logo.png" alt="Hero Logo">
     </div>
   </section>
 
@@ -233,7 +254,7 @@
       <h2 class="section-title">About Us</h2>
       <div class="underline"></div>
       <p style="max-width:700px; margin:auto;">
-        Peniel Place Ministries exists to bring healing, hope and transformation through worship, community outreach, and the Word of God. We believe every life matters and every heart can be renewed.
+        Peniel Place Ministries exists to bring healing, hope and transformation through worship, community outreach, and the Word of God.
       </p>
     </div>
   </section>
@@ -250,79 +271,3 @@
         </div>
         <div>
           <h3>Mission</h3>
-          <p>To reach across all boundaries and uplift communities through worship, outreach, and the Word of God—sharing light wherever there is darkness.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Pastor & Service Times -->
-  <section id="pastor">
-    <div class="container">
-      <h2 class="section-title">Head Pastor</h2>
-      <div class="underline"></div>
-      <div class="pastor">
-        <div class="pastor-details">
-          <h3>Pastor John</h3>
-          <p>John leads our congregation with passion and a heart for equipping every believer for purpose.</p>
-          <p><strong>Sunday Service:</strong> 10:00 AM – 1:00 PM</p>
-          <p><strong>Location:</strong> 14 Sugar Loaf Road, Tafelsig</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Gallery -->
-  <section id="gallery">
-    <div class="container">
-      <h2 class="section-title">Gallery</h2>
-      <div class="underline"></div>
-      <div class="gallery">
-        <img src="service.png" alt="Worship Service">
-        <img src="pastor.png" alt="Community Outreach">
-        <img src="giving.jpg" alt="Sunday Gathering">
-       
-      </div>
-    </div>
-  </section>
-
-  <!-- Give & Contact -->
-  <section id="give">
-    <div class="container">
-      <h2 class="section-title">Give & Contact</h2>
-      <div class="underline"></div>
-      <div class="give-contact">
-        <div>
-          <h3>Support the Ministry</h3>
-          <p>Your generosity fuels our outreach, services, and community programs.</p>
-          <a href="#" class="button">Give Now</a>
-        </div>
-        <div>
-          <h3>Get in Touch</h3>
-          <p>We’d love to connect with you.</p>
-          <p class="contact-number">📞 083 883 2832</p>
-          <p>✉️ info@penielplace.org.za</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer style="text-align:center; padding:2rem 0; color:#777;">
-    © 2025 Peniel Place Ministries • Genesis 32:22 • Ministry Without Borders
-  </footer>
-
-  <script>
-    // Remove loader and enable scroll after animation
-    document.getElementById('loader').addEventListener('animationend', () => {
-      document.body.style.overflow = 'auto';
-      document.getElementById('loader').remove();
-    });
-
-    // Mobile menu toggle
-    function toggleMenu() {
-      document.getElementById('navLinks').classList.toggle('show');
-    }
-  </script>
-</body>
-</html>
