@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Peniel Place Ministries</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
+
+  <style>
+    /* — Reset & Base — */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #333;
+      background: #fdfdfd;
+      overflow: hidden; /* hide scroll until loader is gone */
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* — Loader Overlay — */
+    #loader {
+      position: fixed;
+      inset: 0;
+      background: #121212;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+      transform: translateY(0);
+      animation: slideUp 1s ease-out 4s forwards;
+    }
+    #loader h1 {
+      font-family: 'Playfair Display', serif;
+      color: #b0c4de;
+      font-size: 2.5rem;
+      text-align: center;
+    }
+    @keyframes slideUp {
+      to { transform: translateY(-100%); }
+    }
+
+    /* — Header & Nav — */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: #fff;
+      border-bottom: 1px solid #eee;
+      z-index: 1000;
+    }
+    .container {
+      width: 90%; max-width: 1200px; margin: auto;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      font-family: 'Playfair Display', serif;
+      color: #1e3a8a;
+      font-weight: 700;
+      font-size: 1.5rem;
+    }
+    .logo img.nav-logo-img {
+      height: 40px; margin-right: 0.5rem;
+    }
+    .nav-links {
+      display: flex; gap: 1.5rem;
+    }
+    .nav-links a {
+      font-weight: 600; color: #333;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: #1e3a8a; }
+
+    /* — Mobile Menu — */
+    .hamburger {
+      display: none; flex-direction: column; gap: 4px; cursor: pointer;
+    }
+    .hamburger div {
+      width: 24px; height: 3px; background: #333;
+    }
+    @media(max-width: 768px) {
+      .nav-links {
+        position: absolute; top: 64px; right: 0;
+        background: #fff; flex-direction: column;
+        width: 200px; border-left: 1px solid #eee;
+        transform: translateX(100%); transition: transform .3s ease;
+      }
+      .nav-links.show { transform: translateX(0); }
+      .hamburger { display: flex; }
+    }
+
+    /* — Hero — */
+    .hero {
+      margin-top: 64px; /* below header */
+      height: 80vh;
+      background: url('hero.jpg') center/cover no-repeat;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; position: relative;
+    }
+    .hero::after {
+      content: ''; position: absolute; inset: 0;
+      background: rgba(0,0,0,0.5);
+    }
+    .hero-content { position: relative; z-index: 1; }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem; margin-bottom: .5rem;
+    }
+    .hero p { font-size: 1.2rem; color: #5b8bf7; }
+
+    /* — Sections — */
+    section { padding: 4rem 0; }
+    section:nth-child(even) { background: #fafafa; }
+    .section-title {
+      text-align: center; font-size: 2rem;
+      margin-bottom: 1rem; color: #1e3a8a; font-weight: 600;
+    }
+    .underline {
+      width: 80px; height: 3px; background: #1e3a8a;
+      margin: .5rem auto 2rem;
+    }
+
+    /* — Two Columns — */
+    .two-col {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+      gap: 2rem;
+    }
+    .two-col p { max-width: 500px; margin: auto; }
+
+    /* — Pastor & Service — */
+    .pastor {
+      display: flex; flex-wrap: wrap; gap: 2rem; align-items: center;
+    }
+    .pastor img {
+      width: 250px; border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .pastor-details h3 {
+      color: #1e3a8a;
+      font-family: 'Playfair Display', serif;
+      margin-bottom: .5rem;
+    }
+
+    /* — Gallery — */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+      gap: 1rem;
+    }
+    .gallery img {
+      width: 100%; border-radius: 6px;
+      object-fit: cover; height: 150px;
+    }
+
+    /* — Give/Contact — */
+    .give-contact {
+      background: #1e3a8a; color: #fff;
+      border-radius: 8px; padding: 2rem;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+    }
+    .give-contact div h3 {
+      color: #ff4a4a; margin-bottom: .5rem;
+    }
+    .give-contact div p { margin-bottom: 1rem; }
+    .give-contact a.button {
+      display: inline-block; background: #ff4a4a;
+      color: #fff; padding: .75rem 1.5rem;
+      border-radius: 4px; font-weight: 600;
+      transition: background .2s;
+    }
+    .give-contact a.button:hover { background: #e03a3a; }
+
+    @media(max-width: 600px) {
+      .give-contact { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Loader Overlay -->
+  <div id="loader">
+    <h1>Welcome to Peniel Place Ministries</h1>
+  </div>
+
+  <!-- Header / Nav -->
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">
+          <img src="c:\Users\jewel\Downloads\ChatGPT Image Jul 21, 2025, 09_51_35 PM.png" alt="Peniel Place Ministries " class="nav-logo-img">
+          <span>Peniel Place</span>
+        </div>
+        <div class="hamburger" onclick="toggleMenu()">
+          <div></div><div></div><div></div>
+        </div>
+        <div class="nav-links" id="navLinks">
+          <a href="#about">About</a>
+          <a href="#vision">Vision</a>
+          <a href="#mission">Mission</a>
+          <a href="#pastor">Pastor</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#give">Give</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1>Welcome to Peniel Place</h1>
+      <h2>Ministry Without boarder </h2>
+<img src="c:\Users\jewel\Downloads\ChatGPT Image Jul 21, 2025, 09_51_35 PM.png" alt="Genesis 32:22">
+      
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title">About Us</h2>
+      <div class="underline"></div>
+      <p style="max-width:700px; margin:auto;">
+        Peniel Place Ministries exists to bring healing, hope and transformation through worship, community outreach, and the Word of God. We believe every life matters and every heart can be renewed.
+      </p>
+    </div>
+  </section>
+
+  <!-- Vision & Mission -->
+  <section id="vision">
+    <div class="container">
+      <h2 class="section-title">Our Vision & Mission</h2>
+      <div class="underline"></div>
+      <div class="two-col">
+        <div>
+          <h3>Vision</h3>
+          <p>To be a sanctuary where broken hearts are mended and lives are transformed by the power of faith and fellowship.</p>
+        </div>
+        <div>
+          <h3>Mission</h3>
+          <p>To reach across all boundaries and uplift communities through worship, outreach, and the Word of God—sharing light wherever there is darkness.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pastor & Service Times -->
+  <section id="pastor">
+    <div class="container">
+      <h2 class="section-title">Head Pastor</h2>
+      <div class="underline"></div>
+      <div class="pastor">
+        <div class="pastor-details">
+          <h3>Pastor John</h3>
+          <p>John leads our congregation with passion and a heart for equipping every believer for purpose.</p>
+          <p><strong>Sunday Service:</strong> 10:00 AM – 1:00 PM</p>
+          <p><strong>Location:</strong> 14 Sugar Loaf Road, Tafelsig</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery">
+    <div class="container">
+      <h2 class="section-title">Gallery</h2>
+      <div class="underline"></div>
+      <div class="gallery">
+        <img src="c:\Users\jewel\AppData\Local\Packages\5319275A.WhatsAppDesktop_cv1g1gvanyjgm\TempState\DB1915052D15F7815C8B88E879465A1E\WhatsApp Image 2025-07-21 at 20.44.09_56cccb44.jpg" alt="Worship Service">
+        <img src="c:\Users\jewel\AppData\Local\Packages\5319275A.WhatsAppDesktop_cv1g1gvanyjgm\TempState\42D6C7D61481D1C21BD1635F59EDAE05\WhatsApp Image 2025-07-21 at 20.44.09_ec6a9755.jpg" alt="Community Outreach">
+        <img src="c:\Users\jewel\AppData\Local\Packages\5319275A.WhatsAppDesktop_cv1g1gvanyjgm\TempState\DF12ECD077EFC8C23881028604DBB8CC\WhatsApp Image 2025-07-21 at 20.48.41_f984ad3b.jpg" alt="Sunday Gathering">
+       
+      </div>
+    </div>
+  </section>
+
+  <!-- Give & Contact -->
+  <section id="give">
+    <div class="container">
+      <h2 class="section-title">Give & Contact</h2>
+      <div class="underline"></div>
+      <div class="give-contact">
+        <div>
+          <h3>Support the Ministry</h3>
+          <p>Your generosity fuels our outreach, services, and community programs.</p>
+          <a href="#" class="button">Give Now</a>
+        </div>
+        <div>
+          <h3>Get in Touch</h3>
+          <p>We’d love to connect with you.</p>
+          <p class="contact-number">📞 083 883 2832</p>
+          <p>✉️ info@penielplace.org.za</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer style="text-align:center; padding:2rem 0; color:#777;">
+    © 2025 Peniel Place Ministries • Genesis 32:22 • Ministry Without Borders
+  </footer>
+
+  <script>
+    // Remove loader and enable scroll after animation
+    document.getElementById('loader').addEventListener('animationend', () => {
+      document.body.style.overflow = 'auto';
+      document.getElementById('loader').remove();
+    });
+
+    // Mobile menu toggle
+    function toggleMenu() {
+      document.getElementById('navLinks').classList.toggle('show');
+    }
+  </script>
+</body>
+</html>
