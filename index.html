@@ -7,54 +7,44 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
 
   <style>
-    :root {
-      --bg: #fdfdfd;
-      --text: #222;
-      --accent: #1e3a8a;
-      --light: #f4f4f4;
-      --button: #ff4a4a;
-    }
-    body.dark {
-      --bg: #121212;
-      --text: #eee;
-      --accent: #bbdefb;
-      --light: #1c1c1c;
-      --button: #f06292;
-    }
-
+    /*—— Reset & Base ——*/
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--text);
+      background: #fdfdfd;
+      color: #222;
+      overflow-x: hidden;
     }
+    a { text-decoration: none; color: inherit; }
 
-    /* Loader */
+    /*—— Loader ——*/
     #loader {
       position: fixed;
       inset: 0;
-      background: var(--accent);
+      background: #1e3a8a;
       color: #fff;
+      font: 1.5rem 'Playfair Display', serif;
       display: flex;
-      justify-content: center;
       align-items: center;
-      font-size: 1.5rem;
-      font-family: 'Playfair Display', serif;
+      justify-content: center;
       z-index: 9999;
-      animation: fadeOut 1s ease-out 4s forwards;
+      animation: fadeOut 1s ease-out 3s forwards;
     }
     @keyframes fadeOut {
       to { opacity: 0; visibility: hidden; }
     }
 
+    /*—— Header & Nav ——*/
     header {
       position: fixed;
       top: 0; left: 0; right: 0;
-      background: var(--bg);
+      background: #fff;
       border-bottom: 1px solid #ddd;
       z-index: 1000;
     }
-    .container { width: 90%; max-width: 1200px; margin: auto; }
+    .container {
+      width: 90%; max-width: 1200px; margin: auto;
+    }
     nav {
       display: flex;
       align-items: center;
@@ -62,54 +52,59 @@
       height: 64px;
     }
     .logo {
+      display: flex;
+      align-items: center;
       font-family: 'Playfair Display', serif;
-      font-size: 1.5rem; font-weight: 700;
-      color: var(--accent);
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #1e3a8a;
+    }
+    .logo img {
+      height: 40px;
+      margin-right: 0.5rem;
+      border-radius: 6px;
     }
     .nav-links {
-      display: flex; gap: 1.5rem;
+      display: flex;
+      gap: 1.2rem;
     }
     .nav-links a {
       font-weight: 600;
-      transition: color .2s;
+      transition: color 0.2s;
     }
-    .nav-links a:hover { color: var(--accent); }
+    .nav-links a:hover { color: #1e3a8a; }
+
     .hamburger {
       display: none;
       flex-direction: column;
-      gap: 4px; cursor: pointer;
+      gap: 5px;
+      cursor: pointer;
     }
     .hamburger div {
       width: 24px; height: 3px;
-      background: var(--text);
-    }
-    .theme-toggle {
-      font-size: 1.2rem;
-      background: none;
-      border: none;
-      color: var(--accent);
-      cursor: pointer;
+      background: #222;
     }
 
     @media (max-width: 768px) {
       .nav-links {
         position: absolute;
         top: 64px; right: 0;
-        background: var(--bg);
+        background: #fff;
         flex-direction: column;
         width: 200px;
         padding: 1rem;
-        border-left: 1px solid #ccc;
+        border-left: 1px solid #ddd;
         transform: translateX(100%);
-        transition: transform .3s ease;
+        transition: transform 0.3s ease;
       }
       .nav-links.show { transform: translateX(0); }
       .hamburger { display: flex; }
     }
 
+    /*—— Hero ——*/
     .hero {
       margin-top: 64px;
-      background: var(--light);
+      background: #f4f4f4;
       padding: 4rem 1rem;
       text-align: center;
     }
@@ -118,78 +113,209 @@
       width: 100%;
       border-radius: 8px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-      margin-bottom: 1rem;
     }
 
+    /*—— Sections ——*/
     section { padding: 4rem 1rem; }
-    section:nth-child(even) { background: var(--light); }
+    section:nth-child(even) { background: #f4f4f4; }
     .section-title {
       text-align: center;
       font-size: 2rem;
+      color: #1e3a8a;
       margin-bottom: 1rem;
-      color: var(--accent);
     }
     .underline {
       width: 80px; height: 3px;
-      background: var(--accent);
+      background: #1e3a8a;
       margin: .5rem auto 2rem;
+    }
+
+    /* Grid utilities */
+    .two-col, .gallery, .give-contact {
+      display: grid;
+      gap: 2rem;
+    }
+    .two-col { grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); }
+    .gallery { grid-template-columns: repeat(auto-fit, minmax(150px,1fr)); }
+
+    /* Gallery images */
+    .gallery img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 6px;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.1);
+    }
+
+    /* Give & Contact box (combined) */
+    .give-contact {
+      grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+      background: #1e3a8a;
+      color: #fff;
+      border-radius: 8px;
+      padding: 2rem;
+    }
+    .give-contact h3 {
+      color: #ff4a4a;
+      margin-bottom: .5rem;
+    }
+    .give-contact a.button {
+      background: #ff4a4a;
+      color: #fff;
+      padding: .75rem 1.5rem;
+      border-radius: 4px;
+      font-weight: 600;
+      display: inline-block;
+      margin-top: 1rem;
+      text-align: center;
+      transition: background 0.2s;
+    }
+    .give-contact a.button:hover {
+      background: #c62828;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.9rem;
+      color: #222;
+      opacity: 0.6;
+    }
+
+    @media (max-width: 600px) {
+      .nav-links { gap: 1rem; }
+      .give-contact { grid-template-columns: 1fr; }
+      .gallery { grid-template-columns: 1fr; }
     }
   </style>
 </head>
+
 <body>
+  <!-- Loader -->
+  <div id="loader">Welcome to Peniel Place Ministries – A Ministry Without Borders</div>
 
-<!-- Loader -->
-<div id="loader">Welcome to Peniel Place Ministries – A Ministry Without Borders</div>
-
-<header>
-  <div class="container">
-    <nav>
-      <div class="logo">Peniel Place</div>
-      <div style="display:flex;align-items:center;gap:1rem;">
-        <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <nav>
+        <div class="logo">
+          <img src="images/logo.png" alt="Logo">
+          <span>Peniel Place Ministries</span>
+        </div>
         <div class="hamburger" onclick="toggleMenu()">
           <div></div><div></div><div></div>
         </div>
-      </div>
-      <div class="nav-links" id="navLinks">
-        <a href="#about">About</a>
-        <a href="#vision">Vision</a>
-        <a href="#mission">Mission</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#service">Service</a>
-        <a href="#contact">Contact</a>
-      </div>
-    </nav>
-  </div>
-</header>
+        <div class="nav-links" id="navLinks">
+          <a href="#about">About</a>
+          <a href="#vision">Vision</a>
+          <a href="#mission">Mission</a>
+          <a href="#service">Service</a>
+          <a href="#gallery">Gallery</a>
+          <a href="#give">Give</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
 
-<section class="hero" id="home">
-  <img src="images/logo.png" alt="Peniel Place Logo">
-</section>
+  <!-- Hero -->
+  <section class="hero" id="home">
+    <img src="images/logo.png" alt="Peniel Place Ministries Logo">
+  </section>
 
-<section id="about">
-  <div class="container">
-    <h2 class="section-title">About Us</h2>
-    <div class="underline"></div>
-    <p style="max-width:700px;margin:auto;">
-      Peniel Place Ministries exists to bring healing, hope and transformation through worship, community outreach, and the Word of God.
-    </p>
-  </div>
-</section>
+  <!-- About -->
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title">About Us</h2>
+      <div class="underline"></div>
+      <p style="max-width:700px; margin:auto;">
+        Peniel Place Ministries exists to bring healing, hope and transformation through worship, community outreach, and the Word of God.
+      </p>
+    </div>
+  </section>
 
-<section id="vision">
-  <div class="container">
-    <h2 class="section-title">Our Vision & Mission</h2>
-    <div class="underline"></div>
-    <div class="two-col">
-      <div>
-        <h3>Vision</h3>
-        <p>To be a sanctuary where broken hearts are mended and lives are transformed by the power of faith and fellowship.</p>
-      </div>
-      <div>
-        <h3>Mission</h3>
-        <p>To reach across all boundaries and uplift communities through worship, outreach, and the Word of God—sharing light wherever there is darkness.</p>
+  <!-- Vision & Mission -->
+  <section id="vision">
+    <div class="container">
+      <h2 class="section-title">Our Vision & Mission</h2>
+      <div class="underline"></div>
+      <div class="two-col">
+        <div>
+          <h3>Vision</h3>
+          <p>To be a sanctuary where broken hearts are mended and lives are transformed by the power of faith and fellowship.</p>
+        </div>
+        <div>
+          <h3>Mission</h3>
+          <p>To reach across all boundaries and uplift communities through worship, outreach, and the Word of God—sharing light wherever there is darkness.</p>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  <!-- Service -->
+  <section id="service">
+    <div class="container">
+      <h2 class="section-title">Service</h2>
+      <div class="underline"></div>
+      <div class="two-col">
+        <div>
+          <h3>Sunday Service</h3>
+          <p>10:00 AM – 12:30 PM</p>
+          <p>14 Sugarloaf Road, Tafelsig, Mitchells Plain</p>
+        </div>
+        <div>
+          <h3>Prayer Meetings</h3>
+          <p>Saturday Prayer: 7:00 PM</p>
+          <p>Thursday Community Meeting: 7:00 PM – 8:00 PM</p>
+          <p><strong>Join Us!</strong></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery">
+    <div class="container">
+      <h2 class="section-title">Gallery</h2>
+      <div class="underline"></div>
+      <div class="gallery">
+        <img src="images/service.png" alt="Worship Service">
+        <img src="images/pastor.png" alt="Community Outreach">
+        <img src="images/giving.jpg" alt="Sunday Gathering">
+      </div>
+    </div>
+  </section>
+
+  <!-- Give & Contact -->
+  <section id="give">
+    <div class="container">
+      <h2 class="section-title">Give & Contact</h2>
+      <div class="underline"></div>
+      <div class="give-contact">
+        <div>
+          <h3>Support the Ministry</h3>
+          <p>Your generosity fuels our outreach, services, and community programs.</p>
+          <a href="#" class="button">Give Now</a>
+        </div>
+        <div>
+          <h3>Get in Touch</h3>
+          <p>📞 085 885 2852</p>
+          <p>✉️ info@penielplace.org.za</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    © 2025 Peniel Place Ministries • Genesis 32:22 • Ministry Without Borders
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('navLinks').classList.toggle('show');
+    }
+  </script>
+</body>
+</html>
