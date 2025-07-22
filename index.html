@@ -4,134 +4,124 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Peniel Place Ministries</title>
-
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
-
   <style>
     :root {
-      --bg: #fdfdfd;
-      --text: #333;
+      --bg: #fff;
+      --text: #222;
       --accent: #1e3a8a;
+      --light: #fafafa;
       --button: #ff4a4a;
-      --underline: #1e3a8a;
     }
     body.dark {
       --bg: #121212;
       --text: #eee;
       --accent: #bbdefb;
+      --light: #1c1c1c;
       --button: #f06292;
-      --underline: #bbdefb;
     }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Inter', sans-serif;
       background: var(--bg);
       color: var(--text);
-      overflow-x: hidden;
     }
-    a { color: inherit; text-decoration: none; }
+    a { text-decoration: none; color: inherit; }
 
     header {
       position: fixed;
       top: 0; left: 0; right: 0;
       background: var(--bg);
-      border-bottom: 1px solid #ccc;
+      border-bottom: 1px solid #ddd;
       z-index: 1000;
     }
     .container {
       width: 90%; max-width: 1200px; margin: auto;
     }
     nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 64px;
+      display: flex; align-items: center;
+      justify-content: space-between; height: 64px;
     }
     .logo {
       font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
-      font-weight: 700;
+      font-size: 1.5rem; font-weight: 700;
       color: var(--accent);
     }
     .nav-links {
-      display: flex; gap: 1rem;
+      display: flex; gap: 1.5rem;
     }
-    .nav-links a { font-weight: 600; transition: color .2s; }
+    .nav-links a {
+      font-weight: 600;
+      transition: color .2s;
+    }
     .nav-links a:hover { color: var(--accent); }
 
     .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 4px;
-      cursor: pointer;
+      display: none; flex-direction: column;
+      gap: 4px; cursor: pointer;
     }
     .hamburger div {
-      width: 24px; height: 3px; background: var(--text);
+      width: 24px; height: 3px;
+      background: var(--text);
     }
-
     .theme-toggle {
-      cursor: pointer;
       font-size: 1.2rem;
       background: none;
       border: none;
       color: var(--accent);
+      cursor: pointer;
     }
 
     @media (max-width: 768px) {
       .nav-links {
-        position: absolute;
-        top: 64px; right: 0;
+        position: absolute; top: 64px; right: 0;
         background: var(--bg);
         flex-direction: column;
         width: 200px;
+        border-left: 1px solid #ccc;
         padding: 1rem;
         transform: translateX(100%);
         transition: transform .3s ease;
-        border-left: 1px solid #ccc;
       }
       .nav-links.show { transform: translateX(0); }
       .hamburger { display: flex; }
     }
 
+    /* Hero */
     .hero {
       margin-top: 64px;
-      min-height: 80vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
       text-align: center;
-      padding: 2rem;
+      padding: 4rem 1rem;
     }
     .hero img {
-      max-width: 320px;
+      max-width: 300px;
       width: 100%;
       border-radius: 8px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
       margin-bottom: 1rem;
     }
     .hero h1 {
       font-family: 'Playfair Display', serif;
       font-size: 2.5rem;
+      color: var(--accent);
       margin-bottom: .5rem;
     }
     .hero h2 {
       font-size: 1.2rem;
-      color: var(--accent);
     }
 
     section { padding: 4rem 1rem; }
+    section:nth-child(even) { background: var(--light); }
     .section-title {
       text-align: center;
       font-size: 2rem;
-      color: var(--accent);
       margin-bottom: 1rem;
+      color: var(--accent);
     }
     .underline {
-      width: 80px; height: 3px;
-      background: var(--underline);
+      width: 80px;
+      height: 3px;
+      background: var(--accent);
       margin: .5rem auto 2rem;
     }
 
@@ -143,9 +133,10 @@
 
     .gallery img {
       width: 100%;
-      border-radius: 8px;
+      height: 150px;
       object-fit: cover;
-      box-shadow: 0 6px 14px rgba(0,0,0,0.2);
+      border-radius: 6px;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.1);
     }
 
     .give-contact {
@@ -154,7 +145,10 @@
       border-radius: 8px;
       padding: 2rem;
     }
-    .give-contact h3 { color: var(--button); }
+    .give-contact h3 {
+      color: var(--button);
+      margin-bottom: .5rem;
+    }
     .give-contact a.button {
       background: var(--button);
       color: #fff;
@@ -163,20 +157,20 @@
       font-weight: 600;
       display: inline-block;
       text-align: center;
-      transition: background .2s;
+      margin-top: 1rem;
     }
-
     footer {
       text-align: center;
-      padding: 2rem 0;
+      padding: 2rem 1rem;
+      font-size: 0.9rem;
       color: var(--text);
-      opacity: 0.6;
+      opacity: 0.7;
     }
 
     @media (max-width: 600px) {
       .hero h1 { font-size: 2rem; }
-      .hero h2 { font-size: 1rem; }
       .nav-links { gap: 1rem; }
+      .give-contact { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -186,7 +180,7 @@
     <div class="container">
       <nav>
         <div class="logo">Peniel Place</div>
-        <div style="display: flex; align-items: center; gap: 1rem;">
+        <div style="display:flex;align-items:center;gap:1rem;">
           <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
           <div class="hamburger" onclick="toggleMenu()">
             <div></div><div></div><div></div>
@@ -197,7 +191,7 @@
           <a href="#vision">Vision</a>
           <a href="#mission">Mission</a>
           <a href="#gallery">Gallery</a>
-          <a href="#give">Service</a>
+          <a href="#service">Service</a>
           <a href="#contact">Contact</a>
         </div>
       </nav>
@@ -205,7 +199,7 @@
   </header>
 
   <section class="hero" id="home">
-    <img src="images/logo.png" alt="Peniel Place Ministries Logo">
+    <img src="images/logo.png" alt="Peniel Place Logo">
     <h1>Peniel Place Ministries</h1>
     <h2>Ministry Without Borders</h2>
   </section>
@@ -214,7 +208,7 @@
     <div class="container">
       <h2 class="section-title">About Us</h2>
       <div class="underline"></div>
-      <p style="max-width:700px; margin:auto;">
+      <p style="max-width:700px;margin:auto;">
         Peniel Place Ministries exists to bring healing, hope and transformation through worship, community outreach, and the Word of God.
       </p>
     </div>
@@ -242,13 +236,19 @@
       <h2 class="section-title">Gallery</h2>
       <div class="underline"></div>
       <div class="gallery">
-        <img src="images/service.png" alt="Worship Service">
+        <img src="images/service.png" alt="Service">
         <img src="images/pastor.png" alt="Community Outreach">
         <img src="images/giving.jpg" alt="Sunday Gathering">
       </div>
     </div>
   </section>
 
-  <section id="give">
+  <section id="service">
     <div class="container">
-      <h2 class="section-title
+      <h2 class="section-title">Service</h2>
+      <div class="underline"></div>
+      <div class="give-contact">
+        <div>
+          <h3>Sunday Service</h3>
+          <p>10:00 AM – 12:30 PM</p>
+          <p>📍 14 Sugar
