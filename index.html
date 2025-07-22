@@ -5,12 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Peniel Place Ministries</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
+
   <style>
     :root {
-      --bg: #fff;
+      --bg: #fdfdfd;
       --text: #222;
       --accent: #1e3a8a;
-      --light: #fafafa;
+      --light: #f4f4f4;
       --button: #ff4a4a;
     }
     body.dark {
@@ -20,6 +21,7 @@
       --light: #1c1c1c;
       --button: #f06292;
     }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Inter', sans-serif;
@@ -39,8 +41,10 @@
       width: 90%; max-width: 1200px; margin: auto;
     }
     nav {
-      display: flex; align-items: center;
-      justify-content: space-between; height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
     }
     .logo {
       font-family: 'Playfair Display', serif;
@@ -57,8 +61,10 @@
     .nav-links a:hover { color: var(--accent); }
 
     .hamburger {
-      display: none; flex-direction: column;
-      gap: 4px; cursor: pointer;
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      cursor: pointer;
     }
     .hamburger div {
       width: 24px; height: 3px;
@@ -74,12 +80,13 @@
 
     @media (max-width: 768px) {
       .nav-links {
-        position: absolute; top: 64px; right: 0;
+        position: absolute;
+        top: 64px; right: 0;
         background: var(--bg);
         flex-direction: column;
         width: 200px;
-        border-left: 1px solid #ccc;
         padding: 1rem;
+        border-left: 1px solid #ccc;
         transform: translateX(100%);
         transition: transform .3s ease;
       }
@@ -90,8 +97,9 @@
     /* Hero */
     .hero {
       margin-top: 64px;
-      text-align: center;
+      background: var(--light);
       padding: 4rem 1rem;
+      text-align: center;
     }
     .hero img {
       max-width: 300px;
@@ -99,15 +107,6 @@
       border-radius: 8px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.3);
       margin-bottom: 1rem;
-    }
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
-      color: var(--accent);
-      margin-bottom: .5rem;
-    }
-    .hero h2 {
-      font-size: 1.2rem;
     }
 
     section { padding: 4rem 1rem; }
@@ -119,8 +118,7 @@
       color: var(--accent);
     }
     .underline {
-      width: 80px;
-      height: 3px;
+      width: 80px; height: 3px;
       background: var(--accent);
       margin: .5rem auto 2rem;
     }
@@ -168,7 +166,6 @@
     }
 
     @media (max-width: 600px) {
-      .hero h1 { font-size: 2rem; }
       .nav-links { gap: 1rem; }
       .give-contact { grid-template-columns: 1fr; }
     }
@@ -200,8 +197,6 @@
 
   <section class="hero" id="home">
     <img src="images/logo.png" alt="Peniel Place Logo">
-    <h1>Peniel Place Ministries</h1>
-    <h2>Ministry Without Borders</h2>
   </section>
 
   <section id="about">
@@ -247,8 +242,4 @@
     <div class="container">
       <h2 class="section-title">Service</h2>
       <div class="underline"></div>
-      <div class="give-contact">
-        <div>
-          <h3>Sunday Service</h3>
-          <p>10:00 AM – 12:30 PM</p>
-          <p>📍 14 Sugar
+      <
